@@ -16,9 +16,9 @@ exam = [90, 90, 90]
 output = [76.1]
 
 # --[2nd Year Grades]--
-report2 = [100, 100, 83.5, 85]
-coding2 = [93, 94, 75]
-exam2 = [95, 90]
+report2 = [None, None, None, None]
+coding2 = [None, None, None]
+exam2 = [None, None]
 output2 = [87.3]
 
 
@@ -88,7 +88,8 @@ def test_report(verbose=True):
 
 def test_all(debug=False):
     """ Preprocess all grades, build model suited for all grades, fit model,
-    query trained/fitted model on input and output it's guess """
+    query trained/fitted model on input and output it's guess.
+     Input: all first year grades, Output: next year grade. """
     inp = preprocess_all()
     out = np.asarray([output2[0]], dtype="float32")
     if debug:
