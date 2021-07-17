@@ -7,6 +7,7 @@ from sklearn.model_selection import train_test_split
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Dense, LeakyReLU
 
+np.random.seed(1001)
 
 def load_data():
     return pd.read_csv('student_grades.csv')
@@ -44,11 +45,13 @@ def build_model(input_shape, output_shape=1):
     model = Sequential()
     model.add(Dense(units=256, input_dim=input_shape))
     model.add(LeakyReLU())
-    model.add(Dense(units=256))
-    model.add(LeakyReLU())
     model.add(Dense(units=192))
     model.add(LeakyReLU())
     model.add(Dense(units=128))
+    model.add(LeakyReLU())
+    model.add(Dense(units=64))
+    model.add(LeakyReLU())
+    model.add(Dense(units=32))
     model.add(LeakyReLU())
     model.add(Dense(units=1))
     model.add(LeakyReLU())
