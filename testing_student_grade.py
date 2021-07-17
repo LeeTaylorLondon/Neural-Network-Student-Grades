@@ -17,8 +17,15 @@ def clean_data(df):
     print(df.isnull().sum())
 
 def data_preprocessing(df):
-    """ Scale all data points except G3 """
+    """ Replace string values with integers then
+        Scale all data points except G3 """
     df_prescaled = df.copy()
+    df = df.replace(["other", "reputation", "course", "home", "other"], [4, 3, 2, 1, 0])
+    df = df.replace(["health", "teacher", "services", "at_home"], [3, 2, 1, 0])
+    df = df.replace(["GP", "MS", "M", "F", "U", "R", "LE3", "GT3", "T", "A"],
+                    [1, 0, 1, 0, 1, 0, 1, 0, 1, 0])
+    df = df.replace(["mother", "father", "other"], [2, 1, 0])
+    df = df.replace(["yes", "no"], [1, 0])
     df_scaled = df.drop(['G3'], axis=1)
     df_scaled = scale(df_scaled)
     cols = df.columns.tolist()
@@ -48,9 +55,9 @@ def test_model(model, *data):
 if __name__ == '__main__':
     gdf = load_data()
     # clean_data(df)
-    # print(gdf)
     gdf, _ = data_preprocessing(gdf)
-    x_train, x_test, y_train, y_test = split_data(gdf)
-    model = build_model_a1(33)
-    model.fit(x_train, y_train, epochs=20)
-    test_model(model, x_train, x_test, y_train, y_test)
+    print(gdf)
+    # x_train, x_test, y_train, y_test = split_data(gdf)
+    # model = build_model_a1(33)
+    # model.fit(x_train, y_train, epochs=20)
+    # test_model(model, x_train, x_test, y_train, y_test)
