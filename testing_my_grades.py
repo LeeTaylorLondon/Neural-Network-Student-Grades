@@ -9,14 +9,14 @@ from tensorflow.keras.layers import Dense, LeakyReLU
 from tensorflow.keras.models import Sequential
 
 
-# --[1st Year Grades (bad)]--
+# --[1st Year Grades]--
 report = [65, 84, 74]
 coding = [87.5, 94, 65, 55, 57, 55, 60, 100, 84, 80]
 exam = [90, 90, 90]
 output = [76.1]
 
 # --[2nd Year Grades]--
-report2 = [None, None, None, None]
+report2 = [100, 100, 83.5, 85]
 coding2 = [None, None, None]
 exam2 = [None, None]
 output2 = [87.3]
@@ -102,20 +102,23 @@ def test_all(debug=False):
 
 
 if __name__ == '__main__':
+    """ Build, train and test models """
     # test_report(verbose=True)
     # test_all(debug=False)
 
-    grades = preprocess_all()
-    grades = np.reshape(grades, (17, 1))
-    gdf = pd.DataFrame(grades) # grades data frame
-    print(gdf)
-    print(dir(gdf))
-    gdf.plot(kind='bar', ylim=(0, 120), colormap='terrain')
-    # plt.plot(gdf, )
-    plt.ylabel('Out of 100%')
-    plt.xlabel('Grade Percentages')
-    plt.show()
+    """ Plotting my grades unsorted """
+    # grades = preprocess_all()
+    # grades = np.reshape(grades, (17, 1))
+    # gdf = pd.DataFrame(grades) # grades data frame
+    # print(gdf)
+    # print(dir(gdf))
+    # gdf.plot(kind='bar', ylim=(0, 120), colormap='terrain')
+    # # plt.plot(gdf, )
+    # plt.ylabel('Out of 100%')
+    # plt.xlabel('Grade Percentages')
+    # plt.show()
 
+    """ Plotting my grades sorted ascending """
     # grades = preprocess_all()
     # grades.sort()
     # grades = np.reshape(grades, (17, 1))

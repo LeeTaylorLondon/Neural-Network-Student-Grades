@@ -1,6 +1,5 @@
 import pandas as pd
 import numpy as np
-import matplotlib.pyplot as plt
 from sklearn.preprocessing import scale
 from sklearn.metrics import mean_squared_error
 from sklearn.model_selection import train_test_split
@@ -13,7 +12,7 @@ def load_data():
     return pd.read_csv('student_grades.csv')
 
 def clean_data(df):
-    """ This functions no values are missing """
+    """ This functions shows no values are missing """
     print(df.isnull().sum())
 
 def data_preprocessing(df):
@@ -57,6 +56,7 @@ def build_model(input_shape, output_shape=1):
     model.add(LeakyReLU())
     model.add(Dense(units=output_shape))
     model.compile(optimizer="adam", loss="mse", metrics=['accuracy'])
+    model.summary()
     return model
 
 def test_model(model, *data):
@@ -77,11 +77,6 @@ if __name__ == '__main__':
     # print(gdf)
     x_train, x_test, y_train, y_test = split_data(gdf)
     model = build_model(32)
-    model.fit(x_train, y_train, epochs=20, batch_size=1)
-
-    # try:
-    #     model.evaluate(y_train, y_test)
-    # except ValueError as e:
-    #     print(f"\nERROR: {e}\n")
-
-    test_model(model, x_train, x_test, y_train, y_test)
+    #
+    # model.fit(x_train, y_train, epochs=200, batch_size=1)
+    # test_model(model, x_train, x_test, y_train, y_test)
